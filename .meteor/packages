@@ -17,3 +17,5 @@ shell-server@0.2.4            # Server-side component of the `meteor shell` comm
 angular2-compilers
 dynamic-import
 autopublish
+tracker
+insecure

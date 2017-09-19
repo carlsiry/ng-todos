@@ -1,9 +1,13 @@
 <header>
     <h1>待办事项</h1>
+    <form class="new-task">
+        <input type="text" #todo (keyup.enter)="addTask(todo.value)" placeholder="type to add new tasks"/>
+    </form>
 </header>
 
 <ul>
     <li *ngFor="let task of tasks | async">
+    <!-- <li *ngFor="let task of tasks"> -->
         {{ task.text }}
     </li>
 </ul>

@@ -1,6 +1,6 @@
 
 declare module '*';
 
-interface Task {
-    text: string
-}
+// interface Task {
+    // text: string
+// }

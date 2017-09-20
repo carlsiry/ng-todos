@@ -4,14 +4,22 @@
         <!-- 用于增加任务的表单 -->
         <!-- todo 为模版本地变量：用于引用DOM元素，获取表单数据 -->
         <!-- 事件输出为：回车键按下触发事件输出，调用组件方法addTask(todo.value) 把表单数据获取插入到数据库上 -->
-        <input type="text" #todo (keyup.enter)="addTask(todo.value)" placeholder="type to add new tasks"/>
+        <input type="text" #todo (keyup.enter)="addTask(todo)" placeholder="type to add new tasks"/>
     </form>
 </header>
 
 <ul>
     <!-- 循环指令：tasks为可观察流，需要使用异步模版渲染：把流中的任务内容渲染到DOM中 -->
-    <li *ngFor="let task of tasks | async">
+    <li *ngFor="let task of tasks | async" [class.checked]="task.checked">
+    <!-- class.checked 样式跟任务文档的是否选中完成字段绑定` -->
     <!-- <li *ngFor="let task of tasks"> -->
-        {{ task.text }}
+        <button class="delete" (click)="removeTask(task)">&times;</button>
+        <label>
+            <input type="checkbox" (click)="setChecked(task)" [checked]="task.checked" class="toggle-checked"/>
+            <!-- setChecked 设置任务是否完成 checked::task.checked -->
+            <span class="text">
+                {{ task.text }}
+            </span>
+        </label>
     </li>
 </ul>

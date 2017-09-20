@@ -1,6 +1,8 @@
 
+// 导入组件中使用到其他组件的样式表
 @import './components/todosList/todosList.scss';
 
+// 声明本组件的使用到的一些样式
 .container {
     max-width: 600px;
     margin: 0 auto;

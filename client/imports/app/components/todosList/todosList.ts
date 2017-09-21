@@ -14,7 +14,8 @@ import { Task } from '../../../../../imports/models/collection-object.model';
     template,
 })
 export class TodosListComponent implements OnInit{
-    tasks: Observable<Task[]>; // 组件属性：所有的任务为可观察流
+    tasks: Observable<Task[]>;  // 组件属性：所有的任务为可观察流
+    hideFlag: boolean = false;  // 是否隐藏已经完成的任务
     constructor() {
         this.tasks = Tasks.find({}, {
             sort: {
@@ -52,5 +53,22 @@ export class TodosListComponent implements OnInit{
                 checked: !task.checked
             }
         });
+    }
+    // 隐藏已经完成的任务
+    hideCompleted() {
+        this.hideFlag = !this.hideFlag;
+        var seletor = {};
+        if (this.hideFlag) {
+            seletor = {
+                checked: {
+                    $ne: true
+                }
+            };
+        }
+        this.tasks = Tasks.find(seletor, {
+            sort: {
+                createdAt: -1 // 文档按时间从大到小排序
+            }
+        }).zone(); // 组件实例化时，查询所有的任务
     }
 }

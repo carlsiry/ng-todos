@@ -1,5 +1,9 @@
+
 <header>
     <h1>待办事项</h1>
+    <label class="hide-completed">
+        <input type="checkbox" (click)="hideCompleted()" >隐藏已经完成的任务
+    </label>
     <form class="new-task">
         <!-- 用于增加任务的表单 -->
         <!-- todo 为模版本地变量：用于引用DOM元素，获取表单数据 -->
